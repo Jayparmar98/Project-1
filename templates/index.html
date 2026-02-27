@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NLP Sentiment Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>🚀 NLP Sentiment Analyzer Dashboard</h1>
+
+    <textarea id="textInput" placeholder="Enter text here..."></textarea>
+    <button onclick="analyzeSentiment()">Analyze</button>
+
+    <div id="resultCard" class="card hidden">
+        <h2>Result</h2>
+        <p><strong>Sentiment:</strong> <span id="sentiment"></span></p>
+        <p><strong>Polarity:</strong> <span id="polarity"></span></p>
+        <p><strong>Time:</strong> <span id="timestamp"></span></p>
+    </div>
+</div>
+
+<script>
+function analyzeSentiment() {
+    const text = document.getElementById("textInput").value;
+
+    fetch("/predict", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ text: text })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("sentiment").innerText = data.sentiment;
+        document.getElementById("polarity").innerText = data.polarity;
+        document.getElementById("timestamp").innerText = data.timestamp;
+
+        let card = document.getElementById("resultCard");
+        card.classList.remove("hidden");
+
+        if (data.sentiment === "Positive") {
+            card.style.background = "#d4edda";
+        } else if (data.sentiment === "Negative") {
+            card.style.background = "#f8d7da";
+        } else {
+            card.style.background = "#fff3cd";
+        }
+    });
+}
+</script>
+
+</body>
+</html>

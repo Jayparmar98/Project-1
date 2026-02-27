@@ -1,16 +1,20 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from textblob import TextBlob
+import datetime
 
 app = Flask(__name__)
 
 @app.route("/")
-def home():
-    return "NLP Sentiment Analyzer Running!"
+def dashboard():
+    return render_template("index.html")
 
 @app.route("/predict", methods=["POST"])
 def predict():
     data = request.get_json()
-    text = data["text"]
+    text = data.get("text")
+
+    if not text:
+        return jsonify({"error": "No text provided"}), 400
 
     blob = TextBlob(text)
     polarity = blob.sentiment.polarity
@@ -25,7 +29,8 @@ def predict():
     return jsonify({
         "text": text,
         "sentiment": sentiment,
-        "polarity": polarity
+        "polarity": round(polarity, 2),
+        "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     })
 
 if __name__ == "__main__":
