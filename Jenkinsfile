@@ -10,7 +10,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git branch: 'dev', url: 'https://github.com/Jayparmar98/Project-1/tree/dev'
+                git branch: 'dev', url: 'https://github.com//Jayparmar98//Project-1//tree//dev'
             }
         }
 
