@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "nlp-bot"
+        IMAGE_NAME = "nlp-bot-prod"
         CONTAINER_NAME = "nlp-bot-container"
     }
 
