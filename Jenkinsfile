@@ -2,15 +2,15 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "nlp-sentiment-dashboard"
-        CONTAINER_NAME = "nlp-dashboard-container"
+        IMAGE_NAME = "nlp-bot"
+        CONTAINER_NAME = "nlp-bot-container"
     }
 
     stages {
 
         stage('Checkout Code') {
             steps {
-                git branch: 'dev', url: 'https://github.com/YOUR_USERNAME/nlp-sentiment-dashboard.git'
+                git branch: 'dev', url: 'https://github.com/Jayparmar98/Project-1/tree/dev'
             }
         }
 
