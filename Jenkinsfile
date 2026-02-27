@@ -25,7 +25,7 @@ pipeline {
                 sh '''
                 docker stop $CONTAINER_NAME || true
                 docker rm $CONTAINER_NAME || true
-                docker run -d -p 80:5001 --name $CONTAINER_NAME $IMAGE_NAME
+                docker run -d -p 5002:5002 --name $CONTAINER_NAME $IMAGE_NAME
                 '''
             }
         }
