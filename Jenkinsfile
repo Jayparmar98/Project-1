@@ -8,6 +8,13 @@ pipeline {
 
     stages {
 
+        stage('Clean Workspace') {
+            steps {
+                echo "Cleaning previous workspace..."
+                deleteDir()
+            }
+        }
+
         stage('Checkout Code') {
             steps {
                 git branch: 'dev', url: 'https://github.com/Jayparmar98/Project-1'
@@ -16,7 +23,9 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t $IMAGE_NAME .'
+                sh '''
+                docker build -t $IMAGE_NAME .
+                '''
             }
         }
 
