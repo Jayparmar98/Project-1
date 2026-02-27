@@ -10,7 +10,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                git branch: 'dev', url: 'https://github.com/Jayparmar98/Project-1'
+                git branch: 'qa', url: 'https://github.com/Jayparmar98/Project-1'
             }
         }
 
@@ -25,7 +25,7 @@ pipeline {
                 sh '''
                 docker stop $CONTAINER_NAME || true
                 docker rm $CONTAINER_NAME || true
-                docker run -d -p 80:5000 --name $CONTAINER_NAME $IMAGE_NAME
+                docker run -d -p 80:5001 --name $CONTAINER_NAME $IMAGE_NAME
                 '''
             }
         }
