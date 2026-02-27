@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "nlp-bot-qa"
-        CONTAINER_NAME = "nlp-bot-container"
+        CONTAINER_NAME = "nlp-bot-qa-container"
     }
 
     stages {
